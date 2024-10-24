@@ -1,0 +1,71 @@
+<form [formGroup]="videojuegoForm" (ngSubmit)="agregarOEditarVideojuego()">
+    <mat-card>
+        <mat-card-title>{{ esModoEdicion ? 'Editar Videojuego' : 'Agregar Videojuego' }}</mat-card-title>
+        <mat-card-content>
+
+            <!-- Campo de Título -->
+            <mat-form-field appearance="fill">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="titulo" required>
+                <mat-error *ngIf="videojuegoForm.get('titulo')?.invalid && videojuegoForm.get('titulo')?.touched">
+                    El título es requerido
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Campo de Descripción -->
+            <mat-form-field appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput formControlName="descripcion" required></textarea>
+                <mat-error
+                    *ngIf="videojuegoForm.get('descripcion')?.invalid && videojuegoForm.get('descripcion')?.touched">
+                    La descripción es requerida
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Campo de Precio -->
+            <mat-form-field appearance="fill">
+                <mat-label>Precio</mat-label>
+                <input matInput type="number" formControlName="precio" required>
+                <mat-error *ngIf="videojuegoForm.get('precio')?.invalid && videojuegoForm.get('precio')?.touched">
+                    El precio es requerido y debe ser positivo
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Campo de Stock -->
+            <mat-form-field appearance="fill">
+                <mat-label>Stock</mat-label>
+                <input matInput type="number" formControlName="stock" required>
+                <mat-error *ngIf="videojuegoForm.get('stock')?.invalid && videojuegoForm.get('stock')?.touched">
+                    El stock es requerido y debe ser un valor positivo
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Campo de Fecha de Lanzamiento -->
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Lanzamiento</mat-label>
+                <input matInput type="date" formControlName="fecha_lanzamiento" required>
+                <mat-error
+                    *ngIf="videojuegoForm.get('fecha_lanzamiento')?.invalid && videojuegoForm.get('fecha_lanzamiento')?.touched">
+                    La fecha de lanzamiento es requerida
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Campo de Plataforma -->
+            <mat-form-field appearance="fill">
+                <mat-label>Plataforma</mat-label>
+                <input matInput formControlName="plataforma" required>
+                <mat-error
+                    *ngIf="videojuegoForm.get('plataforma')?.invalid && videojuegoForm.get('plataforma')?.touched">
+                    La plataforma es requerida
+                </mat-error>
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="videojuegoForm.invalid">
+                {{ esModoEdicion ? 'Guardar Cambios' : 'Agregar Videojuego' }}
+            </button>
+            <button mat-raised-button color="warn" routerLink="/">Cancelar</button>
+        </mat-card-actions>
+    </mat-card>
+</form>

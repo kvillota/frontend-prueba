@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <span>Mi Tienda de Videojuegos</span>
+    <span class="spacer"></span>
+    <a mat-button routerLink="/dashboard">Listado de Videojuegos</a>
+    <a mat-button routerLink="/dashboard/nuevo-videojuego">Agregar Videojuego</a>
+    <button mat-button (click)="cerrarSesion()">Cerrar Sesión</button>
+</mat-toolbar>
+
+<div class="contenido">
+    <router-outlet></router-outlet> <!-- Aquí se cargarán las rutas hijas dentro del Dashboard -->
+</div>

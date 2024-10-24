@@ -1,0 +1,22 @@
+<div *ngIf="videojuego">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ videojuego.titulo }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p><strong>Descripción:</strong> {{ videojuego.descripcion }}</p>
+            <p><strong>Precio:</strong> {{ videojuego.precio | currency }}</p>
+            <p><strong>Stock:</strong> {{ videojuego.stock }}</p>
+            <p><strong>Fecha de Lanzamiento:</strong> {{ videojuego.fecha_lanzamiento | date }}</p>
+            <p><strong>Plataforma:</strong> {{ videojuego.plataforma }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="volver()">Volver al listado</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div *ngIf="!videojuego">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <p>Cargando detalles del videojuego...</p>
+</div>

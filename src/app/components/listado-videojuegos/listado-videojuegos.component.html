@@ -1,0 +1,58 @@
+<div class="mat-elevation-z8">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Buscar videojuegos</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar por título o plataforma">
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort class="full-width-table">
+
+        <!-- Título Column -->
+        <ng-container matColumnDef="titulo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+            <td mat-cell *matCellDef="let videojuego"> {{videojuego.titulo}} </td>
+        </ng-container>
+
+        <!-- Plataforma Column -->
+        <ng-container matColumnDef="plataforma">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Plataforma </th>
+            <td mat-cell *matCellDef="let videojuego"> {{videojuego.plataforma}} </td>
+        </ng-container>
+
+        <!-- Precio Column -->
+        <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+            <td mat-cell *matCellDef="let videojuego"> {{videojuego.precio | currency}} </td>
+        </ng-container>
+
+        <!-- Stock Column -->
+        <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
+            <td mat-cell *matCellDef="let videojuego"> {{videojuego.stock}} </td>
+        </ng-container>
+
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let videojuego">
+                <button mat-raised-button color="primary"
+                    [routerLink]="['/dashboard/videojuegos', videojuego.id]">Ver</button>
+                <button mat-raised-button color="warn" (click)="eliminarVideojuego(videojuego.id)">Eliminar</button>
+                <button mat-raised-button color="accent"
+                    [routerLink]="['/dashboard/editar-videojuego', videojuego.id]">Editar</button>
+            </td>
+        </ng-container>
+
+        <!-- Header y fila de celdas -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div *ngIf="dataSource?.data?.length === 0">
+    <p>No hay videojuegos disponibles</p>
+</div>

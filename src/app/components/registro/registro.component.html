@@ -1,0 +1,38 @@
+<form [formGroup]="registroForm" (ngSubmit)="onRegistro()">
+    <mat-card>
+        <mat-card-title>Registrarse</mat-card-title>
+        <mat-card-content>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" required>
+                <mat-error *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched">
+                    El nombre es requerido
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="email" required>
+                <mat-error *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched">
+                    El email es requerido y debe ser válido
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password" type="password" required>
+                <mat-error *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched">
+                    La contraseña es requerida y debe tener al menos 6 caracteres
+                </mat-error>
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit"
+                [disabled]="registroForm.invalid">Registrarse</button>
+            <button mat-raised-button color="accent" routerLink="/login">Volver al Login</button>
+            <!-- Botón de regreso -->
+        </mat-card-actions>
+    </mat-card>
+</form>
